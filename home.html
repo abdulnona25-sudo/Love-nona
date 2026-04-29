@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For نونه ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+background: #0a0005;
+overflow: hidden;
+width: 100vw;
+height: 100vh;
+font-family: ‘Amiri’, serif;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: none;
+}
+
+/* ── Starfield ── */
+#stars {
+position: fixed;
+inset: 0;
+pointer-events: none;
+z-index: 0;
+}
+.star {
+position: absolute;
+border-radius: 50%;
+background: #fff;
+animation: twinkle var(–d) ease-in-out infinite alternate;
+}
+@keyframes twinkle {
+from { opacity: var(–lo); transform: scale(1); }
+to   { opacity: var(–hi); transform: scale(1.6); }
+}
+
+/* ── Ambient glow ── */
+.glow-bg {
+position: fixed;
+inset: 0;
+background:
+radial-gradient(ellipse 60% 40% at 50% 60%, rgba(180,0,80,.35) 0%, transparent 70%),
+radial-gradient(ellipse 40% 30% at 30% 30%, rgba(120,0,160,.25) 0%, transparent 70%),
+radial-gradient(ellipse 40% 30% at 70% 20%, rgba(200,50,50,.2) 0%, transparent 70%);
+z-index: 0;
+pointer-events: none;
+animation: glowPulse 6s ease-in-out infinite alternate;
+}
+@keyframes glowPulse {
+from { opacity: .7; }
+to   { opacity: 1; }
+}
+
+/* ── Floating petals ── */
+.petal-layer {
+position: fixed;
+inset: 0;
+pointer-events: none;
+z-index: 1;
+}
+.petal {
+position: absolute;
+top: -60px;
+width: var(–sz);
+height: var(–sz);
+background: var(–color);
+border-radius: 50% 0 50% 0;
+opacity: 0;
+animation: petalFall var(–dur) var(–delay) linear infinite;
+filter: drop-shadow(0 0 4px var(–color));
+}
+@keyframes petalFall {
+0%   { transform: translateX(0) rotate(0deg) scale(.8);  opacity: 0; top: -60px; }
+5%   { opacity: .9; }
+90%  { opacity: .7; }
+100% { transform: translateX(var(–drift)) rotate(720deg) scale(.5); opacity: 0; top: 110vh; }
+}
+
+/* ── Main stage ── */
+#stage {
+position: relative;
+z-index: 10;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0;
+animation: stageReveal 2s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes stageReveal {
+from { opacity: 0; transform: translateY(40px) scale(.9); }
+to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Flower heart ── */
+#flower-heart {
+position: relative;
+width: 340px;
+height: 320px;
+filter: drop-shadow(0 0 30px rgba(255,80,120,.7));
+animation: heartBeat 1.4s ease-in-out infinite;
+}
+@keyframes heartBeat {
+0%,100% { transform: scale(1); }
+14%     { transform: scale(1.08); }
+28%     { transform: scale(1); }
+42%     { transform: scale(1.05); }
+56%     { transform: scale(1); }
+}
+
+.flower {
+position: absolute;
+width: var(–fs);
+height: var(–fs);
+left: var(–fx);
+top: var(–fy);
+transform: translate(-50%, -50%) rotate(var(–fr, 0deg));
+animation: flowerSpin var(–fsd, 8s) linear infinite var(–fdir, normal);
+}
+.flower svg { width: 100%; height: 100%; }
+
+/* ── Name display ── */
+.name-wrap {
+margin-top: -10px;
+text-align: center;
+position: relative;
+}
+.love-label {
+font-family: ‘Great Vibes’, cursive;
+font-size: clamp(1.1rem, 3vw, 1.5rem);
+color: rgba(255,180,200,.7);
+letter-spacing: .15em;
+display: block;
+animation: fadeSlide 2.5s 1s both;
+}
+.name {
+font-family: ‘Amiri’, serif;
+font-weight: 700;
+font-size: clamp(3rem, 10vw, 5.5rem);
+line-height: 1;
+background: linear-gradient(135deg, #ff6fa8, #ffb347, #ff6fa8, #e040fb);
+background-size: 300%;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+animation: nameShimmer 4s ease infinite, fadeSlide 2.5s .7s both;
+filter: drop-shadow(0 0 20px rgba(255,80,150,.8));
+}
+.name2 {
+font-family: ‘Great Vibes’, cursive;
+font-size: clamp(2rem, 6vw, 3.5rem);
+color: rgba(255,200,220,.85);
+display: block;
+animation: fadeSlide 2.5s 1.3s both;
+filter: drop-shadow(0 0 10px rgba(255,100,160,.6));
+}
+@keyframes nameShimmer {
+0%,100% { background-position: 0% 50%; }
+50%      { background-position: 100% 50%; }
+}
+@keyframes fadeSlide {
+from { opacity: 0; transform: translateY(20px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Message ── */
+.message {
+margin-top: 18px;
+font-family: ‘Great Vibes’, cursive;
+font-size: clamp(1.2rem, 3.5vw, 1.9rem);
+color: rgba(255,210,230,.75);
+text-align: center;
+max-width: 480px;
+line-height: 1.6;
+animation: fadeSlide 2.5s 1.8s both;
+filter: drop-shadow(0 0 8px rgba(255,100,160,.4));
+}
+
+/* ── Orbiting hearts ── */
+.orbit-ring {
+position: absolute;
+top: 50%;
+left: 50%;
+width: var(–or);
+height: var(–or);
+margin: calc(var(–or) / -2);
+pointer-events: none;
+animation: orbitSpin var(–os) linear infinite var(–odir, normal);
+}
+.orbit-heart {
+position: absolute;
+top: 0;
+left: 50%;
+transform: translateX(-50%);
+font-size: var(–ohs);
+filter: drop-shadow(0 0 6px rgba(255,80,120,.9));
+animation: counterSpin var(–os) linear infinite var(–ocdir, reverse);
+}
+
+/* ── Cursor custom ── */
+#cursor {
+position: fixed;
+pointer-events: none;
+z-index: 9999;
+font-size: 22px;
+transform: translate(-50%,-50%);
+transition: transform .1s;
+filter: drop-shadow(0 0 6px rgba(255,80,120,1));
+}
+
+/* ── Sparkles on click ── */
+.sparkle {
+position: fixed;
+pointer-events: none;
+z-index: 9998;
+font-size: 18px;
+animation: sparklePop .7s ease forwards;
+}
+@keyframes sparklePop {
+0%   { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+100% { opacity: 0; transform: translate(calc(-50% + var(–sx)), calc(-50% + var(–sy))) scale(0); }
+}
+
+@keyframes orbitSpin {
+from { transform: rotate(0deg); }
+to   { transform: rotate(360deg); }
+}
+@keyframes counterSpin {
+from { transform: translateX(-50%) rotate(0deg); }
+to   { transform: translateX(-50%) rotate(-360deg); }
+}
+
+/* ── Scroll pulse ring ── */
+.pulse-ring {
+position: absolute;
+border-radius: 50%;
+border: 2px solid rgba(255,100,160,.5);
+animation: ringExpand 2.5s ease-out infinite;
+pointer-events: none;
+}
+@keyframes ringExpand {
+0%   { width: 80px; height: 80px; opacity: .8; margin: -40px; }
+100% { width: 380px; height: 380px; opacity: 0; margin: -190px; }
+}
+.pulse-ring:nth-child(2) { animation-delay: .8s; }
+.pulse-ring:nth-child(3) { animation-delay: 1.6s; }
+
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+
+<div id="cursor">💗</div>
+
+<!-- Stars -->
+
+<div id="stars"></div>
+
+<!-- Ambient glow -->
+
+<div class="glow-bg"></div>
+
+<!-- Petals -->
+
+<div class="petal-layer" id="petals"></div>
+
+<!-- Main stage -->
+
+<div id="stage">
+
+  <!-- Pulse rings behind heart -->
+
+  <div style="position:relative;width:340px;height:320px;display:flex;align-items:center;justify-content:center;">
+    <div class="pulse-ring" style="position:absolute;top:50%;left:50%;"></div>
+    <div class="pulse-ring" style="position:absolute;top:50%;left:50%;"></div>
+    <div class="pulse-ring" style="position:absolute;top:50%;left:50%;"></div>
+
+```
+<!-- Flower heart SVG -->
+<div id="flower-heart">
+  <!-- flowers placed via JS on heart path -->
+</div>
+
+<!-- Orbit rings -->
+<div class="orbit-ring" style="--or:420px;--os:12s;--odir:normal;">
+  <div class="orbit-heart" style="--ohs:20px;--ocdir:reverse;">🌹</div>
+</div>
+<div class="orbit-ring" style="--or:460px;--os:18s;--odir:reverse;">
+  <div class="orbit-heart" style="--ohs:16px;--ocdir:normal;">💕</div>
+</div>
+<div class="orbit-ring" style="--or:390px;--os:22s;--odir:normal;" data-offset="180">
+  <div class="orbit-heart" style="--ohs:14px;--ocdir:reverse;">🌸</div>
+</div>
+```
+
+  </div>
+
+  <!-- Name -->
+
+  <div class="name-wrap">
+    <span class="love-label">my love, my everything</span>
+    <div class="name">نونه</div>
+    <span class="name2">& نوني</span>
+  </div>
+
+  <!-- Message -->
+
+  <div class="message">
+    Every heartbeat belongs to you &nbsp;❤️<br>
+    كل نبضة من قلبي لكِ وحدك
+  </div>
+
+</div>
+
+<script>
+// ── Custom cursor ──
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top  = e.clientY + 'px';
+});
+
+// ── Sparkles on click ──
+const emojis = ['💖','💗','💕','🌸','✨','💫','🌹','💝'];
+document.addEventListener('click', e => {
+  for (let i = 0; i < 8; i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    const angle = (i / 8) * Math.PI * 2;
+    const dist = 40 + Math.random() * 60;
+    s.style.left = e.clientX + 'px';
+    s.style.top  = e.clientY + 'px';
+    s.style.setProperty('--sx', Math.cos(angle) * dist + 'px');
+    s.style.setProperty('--sy', Math.sin(angle) * dist + 'px');
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 700);
+  }
+});
+
+// ── Stars ──
+const starCont = document.getElementById('stars');
+for (let i = 0; i < 160; i++) {
+  const s = document.createElement('div');
+  s.className = 'star';
+  const sz = Math.random() * 2.5 + .5;
+  s.style.cssText = `
+    width:${sz}px; height:${sz}px;
+    left:${Math.random()*100}%;
+    top:${Math.random()*100}%;
+    --lo:${(.1+Math.random()*.3).toFixed(2)};
+    --hi:${(.6+Math.random()*.4).toFixed(2)};
+    --d:${(1.5+Math.random()*4).toFixed(1)}s;
+    animation-delay:${(Math.random()*4).toFixed(1)}s;
+  `;
+  starCont.appendChild(s);
+}
+
+// ── Petals ──
+const petalCont = document.getElementById('petals');
+const petalColors = ['#ff6fa8','#ff9cc0','#e040fb','#ffb347','#ff6b6b','#f48fb1','#ce93d8'];
+for (let i = 0; i < 30; i++) {
+  const p = document.createElement('div');
+  p.className = 'petal';
+  const sz = 8 + Math.random() * 16;
+  p.style.cssText = `
+    --sz:${sz}px;
+    --color:${petalColors[Math.floor(Math.random()*petalColors.length)]};
+    --dur:${6+Math.random()*10}s;
+    --delay:${Math.random()*12}s;
+    --drift:${-80+Math.random()*160}px;
+    left:${Math.random()*100}%;
+  `;
+  petalCont.appendChild(p);
+}
+
+// ── Flower heart ──
+// Heart parametric: x = 16sin³t, y = 13cos t - 5cos 2t - 2cos 3t - cos 4t
+// Scale to fit container
+const heartEl = document.getElementById('flower-heart');
+const W = 340, H = 320;
+const cx = W / 2, cy = H / 2 + 20;
+const scale = 11.5;
+
+const flowerTypes = [
+  // 🌸 cherry blossom
+  (color, sz) => `<svg viewBox="-${sz} -${sz} ${sz*2} ${sz*2}" xmlns="http://www.w3.org/2000/svg">
+    ${[0,72,144,216,288].map(a => `
+      <ellipse cx="${Math.cos(a*Math.PI/180)*sz*.45}" cy="${Math.sin(a*Math.PI/180)*sz*.45}"
+        rx="${sz*.45}" ry="${sz*.22}"
+        transform="rotate(${a} ${Math.cos(a*Math.PI/180)*sz*.45} ${Math.sin(a*Math.PI/180)*sz*.45})"
+        fill="${color}" opacity=".92"/>
+    `).join('')}
+    <circle r="${sz*.18}" fill="#fff" opacity=".9"/>
+    <circle r="${sz*.08}" fill="#ffeb3b"/>
+  </svg>`,
+  // 🌹 rose-like
+  (color, sz) => `<svg viewBox="-${sz} -${sz} ${sz*2} ${sz*2}" xmlns="http://www.w3.org/2000/svg">
+    ${[0,45,90,135,180,225,270,315].map((a,i) => `
+      <ellipse cx="${Math.cos(a*Math.PI/180)*sz*.38}" cy="${Math.sin(a*Math.PI/180)*sz*.38}"
+        rx="${sz*.38}" ry="${sz*.18}"
+        transform="rotate(${a} ${Math.cos(a*Math.PI/180)*sz*.38} ${Math.sin(a*Math.PI/180)*sz*.38})"
+        fill="${color}" opacity="${.7+i*.03}"/>
+    `).join('')}
+    <circle r="${sz*.2}" fill="${color}" opacity=".95"/>
+    <circle r="${sz*.1}" fill="#fff" opacity=".6"/>
+  </svg>`,
+  // daisy
+  (color, sz) => `<svg viewBox="-${sz} -${sz} ${sz*2} ${sz*2}" xmlns="http://www.w3.org/2000/svg">
+    ${Array.from({length:8},(_,i)=>i).map(i => `
+      <ellipse cx="0" cy="${-sz*.52}"
+        rx="${sz*.18}" ry="${sz*.52}"
+        transform="rotate(${i*45})"
+        fill="${color}" opacity=".88"/>
+    `).join('')}
+    <circle r="${sz*.22}" fill="#ffeb3b"/>
+    <circle r="${sz*.12}" fill="#f57f17"/>
+  </svg>`,
+];
+
+const fColors = ['#ff6fa8','#e91e63','#f06292','#ad1457','#e040fb','#ff8a65','#ff6b6b','#ff9cc0','#d81b60'];
+
+const heartPoints = [];
+for (let t = 0; t < Math.PI * 2; t += 0.18) {
+  const hx = 16 * Math.pow(Math.sin(t), 3);
+  const hy = -(13*Math.cos(t) - 5*Math.cos(2*t) - 2*Math.cos(3*t) - Math.cos(4*t));
+  heartPoints.push([cx + hx * scale, cy + hy * scale]);
+}
+
+heartPoints.forEach(([x, y], i) => {
+  const div = document.createElement('div');
+  div.className = 'flower';
+  const sz = 14 + Math.random() * 12;
+  const type = Math.floor(Math.random() * flowerTypes.length);
+  const color = fColors[Math.floor(Math.random() * fColors.length)];
+  const spin = 5 + Math.random() * 12;
+  const dir = Math.random() > .5 ? 'normal' : 'reverse';
+  div.style.cssText = `
+    --fs:${sz}px;
+    --fx:${x}px;
+    --fy:${y}px;
+    --fr:${Math.random()*360}deg;
+    --fsd:${spin}s;
+    --fdir:${dir};
+  `;
+  div.innerHTML = flowerTypes[type](color, sz / 2);
+  // stagger entrance
+  div.style.animationDelay = (i * 0.03) + 's';
+  div.style.opacity = '0';
+  div.style.transition = `opacity .4s ${i*0.03}s`;
+  heartEl.appendChild(div);
+  requestAnimationFrame(() => setTimeout(() => div.style.opacity = '1', i * 30 + 400));
+});
+
+// ── Offset second orbit heart start position ──
+document.querySelectorAll('.orbit-ring[data-offset]').forEach(el => {
+  const offset = el.dataset.offset;
+  el.style.transform = `rotate(${offset}deg)`;
+});
+</script>
+
+</body>
+</html>
